@@ -1,0 +1,10 @@
+<p>dashboard works!</p>
+
+<div class="container">
+  <div *ngFor="let pokemon of pokemons">
+    {{ pokemon.name }}
+    <a routerLink="{{ '/pokedetail/' + pokemon.id }}"
+      ><img src="{{ '../assets/img/' + pokemon.name + '.png' }}" />
+    </a>
+  </div>
+</div>
