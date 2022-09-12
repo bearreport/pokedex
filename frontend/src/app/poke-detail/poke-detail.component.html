@@ -6,3 +6,10 @@
   has matt tattooed {{ specificPokemon.name }}? The answer is:
   {{ specificPokemon.tattooed }}
 </p>
+
+<div *ngIf="auth.isAuthenticated$">
+  Have you tattooed this?
+  <button (click)="updatePokemon()">Yes I Have tattoed it!</button>
+</div>
+
+<div *ngIf="specificPokemon.tattooed">sweet you've tattooed this</div>

@@ -11,6 +11,7 @@ marshmallow = "*"
 flask-cors = "*"
 authlib = "*"
 python-dotenv = "*"
+requests = "*"
 
 [dev-packages]
 

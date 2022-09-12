@@ -1,8 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { PokemonApiService } from '../pokemon/pokemon-api.service';
-import { Router, ActivatedRoute, ParamMap } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
+import { AuthService } from '@auth0/auth0-angular';
+import { MatPseudoCheckbox } from '@angular/material/core';
 import { PokepicturesApiService } from '../pokepictures/pokepictures-api.service';
 import { Pokemon } from '../pokemon/pokemon.model';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-poke-detail',
@@ -10,10 +13,12 @@ import { Pokemon } from '../pokemon/pokemon.model';
   styleUrls: ['./poke-detail.component.scss'],
 })
 export class PokeDetailComponent implements OnInit {
-  public pokeId = this.route.snapshot.paramMap.get('id');
+  public pokeId = this.route.snapshot.paramMap.get('id') as string;
   public specificPokemon: Pokemon = {} as Pokemon;
 
   constructor(
+    public auth: AuthService,
+    private http: HttpClient,
     private pokemonApi: PokemonApiService,
     private route: ActivatedRoute
   ) {
@@ -23,6 +28,12 @@ export class PokeDetailComponent implements OnInit {
       .subscribe((data) => {
         this.specificPokemon = data;
       });
+  }
+
+  public updatePokemon(): void {
+    this.pokemonApi.updatePokemon(this.pokeId).subscribe((data) => {
+      this.specificPokemon = data;
+    });
   }
 
   ngOnInit(): void {}

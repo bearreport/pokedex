@@ -1,20 +1,13 @@
-from flask import Flask, jsonify, request
-from os import environ as env
+from flask import Flask, jsonify, request, session
 from flask_cors import CORS
-from authlib.integrations.flask_client import OAuth
-from dotenv import find_dotenv, load_dotenv
 import json
 
 from .entities.entity import Session, engine, Base
 from .entities.pokemon import Pokemon, PokemonSchema
 from .entities.pokepictures import Pokepictures, PokepicturesSchema
 
-ENV_FILE = find_dotenv()
-if ENV_FILE:
-    load_dotenv(ENV_FILE)
 
 app = Flask(__name__)
-app.secret_key = env.get("APP_SECRET_KEY")
 CORS(app)
 
 Base.metadata.create_all(engine)
@@ -23,14 +16,10 @@ session = Session()
 
 pokemons = session.query(Pokemon).all()
 
-
-for pokemon in pokemons:
-	print(pokemon.name)
-
 @app.route('/pokemons', methods=['GET'])
 def get_pokemons():
 	session = Session()
-	pokemon_objects = session.query(Pokemon).all()
+	pokemon_objects = session.query(Pokemon).order_by(Pokemon.id).all()
 
 	pokemon_schema = PokemonSchema(many=True)
 	pokemons = pokemon_schema.dump(pokemon_objects)
@@ -47,6 +36,20 @@ def get_pokemon(id):
 	pokemon = pokemon_schema.dump(pokemon_object)
 
 	session.close()
+	return jsonify(pokemon)
+
+@app.route('/pokemons/<id>', methods=['POST'])
+def update_pokemon(id):
+	session = Session()
+	updated_pokemon = session.query(Pokemon).get(id)
+	updated_pokemon.tattooed = True
+
+	pokemon_schema = PokemonSchema()
+	pokemon = pokemon_schema.dump(updated_pokemon)
+	
+	session.commit()
+	session.close()
+
 	return jsonify(pokemon)
 
 @app.route('/pokepictures/<id>', methods=['GET'])

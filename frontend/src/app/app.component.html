@@ -1,2 +1,6 @@
-<h1>main component</h1>
+<mat-toolbar color="primary" class="mat-elevation-z10">
+  <button mat-button *ngIf="!auth.isAuthenticated$">
+    <a href="/login"> Login</a>
+  </button>
+</mat-toolbar>
 <router-outlet></router-outlet>

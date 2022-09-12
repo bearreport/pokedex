@@ -25,4 +25,12 @@ export class PokemonApiService {
       })
     );
   }
+
+  updatePokemon(id: string): Observable<Pokemon> {
+    return this.http.post<Pokemon>(`${API_URL}/pokemons/${id}`, {}).pipe(
+      catchError((err) => {
+        throw 'error!';
+      })
+    );
+  }
 }
