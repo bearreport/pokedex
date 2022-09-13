@@ -25,3 +25,8 @@ class Entity():
         self.last_updated_by = created_by
 
 
+#docker run --name pokedex \
+#    -p 5432:5432 \
+#   -e POSTGRES_DB=pokedex \
+#    -e POSTGRES_PASSWORD=AshKetchum\
+#    -d postgres
