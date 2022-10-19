@@ -1,10 +1,11 @@
-<p>dashboard works!</p>
+<app-spinner *ngIf="loading"></app-spinner>
 
-<div class="container">
-  <div *ngFor="let pokemon of pokemons">
-    {{ pokemon.name }}
+<div class="container" *ngIf="!loading">
+  <div *ngFor="let pokemon of pokemons" class="poke-container">
     <a routerLink="{{ '/pokedetail/' + pokemon.id }}"
       ><img src="{{ '../assets/img/' + pokemon.name + '.png' }}" />
     </a>
+    <div class="centered">{{ pokemon.name }}</div>
+    <div class="centered" *ngIf="pokemon.tattooed">TATTOOED</div>
   </div>
 </div>

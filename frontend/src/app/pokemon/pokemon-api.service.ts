@@ -2,8 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { API_URL } from '../env';
 import { Pokemon } from './pokemon.model';
-import { Observable } from 'rxjs';
-import { catchError } from 'rxjs/operators';
+import { Observable, timer } from 'rxjs';
+import { catchError, debounce, debounceTime } from 'rxjs/operators';
 
 @Injectable()
 export class PokemonApiService {

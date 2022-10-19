@@ -2,3 +2,16 @@
   display: flex;
   flex-wrap: wrap;
 }
+
+.poke-container {
+  position: relative;
+  text-align: center;
+  color: blueviolet;
+}
+
+.centered {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
