@@ -1,5 +1,4 @@
 <app-spinner *ngIf="loading"></app-spinner>
-<input [(ngModel)]="searchTerm" (input)="searchPokemon(searchTerm)" />
 
 <div class="container" *ngIf="!loading">
   <div *ngFor="let pokemon of filteredPokemons" class="poke-container">
