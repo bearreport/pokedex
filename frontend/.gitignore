@@ -44,4 +44,4 @@ testem.log
 .DS_Store
 Thumbs.db
 .env
-/ignoreMe.ts
+/src/ignoreMe.ts
