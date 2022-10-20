@@ -9,9 +9,11 @@ import { SpinnerComponent } from '../spinner/spinner.component';
   styleUrls: ['./dashboard.component.scss'],
 })
 export class DashboardComponent implements OnInit {
-  title = 'pokedex';
+  title: string = 'pokedex';
   pokemons: Pokemon[] = [];
-  loading = true;
+  filteredPokemons: Pokemon[] = [];
+  loading: boolean = true;
+  searchTerm: string = '';
 
   public delay(time: number) {
     return new Promise((resolve) => setTimeout(resolve, time));
@@ -23,6 +25,12 @@ export class DashboardComponent implements OnInit {
     });
   }
 
+  public searchPokemon(value: string): void {
+    this.filteredPokemons = this.pokemons.filter((pokemon) => {
+      return pokemon.name.toLowerCase().includes(value.toLowerCase());
+    }, 'test');
+  }
+
   constructor(private pokemonApi: PokemonApiService) {}
 
   ngOnInit(): void {
@@ -31,6 +39,7 @@ export class DashboardComponent implements OnInit {
         this.pokemonApi.getPokemon().subscribe((pokemon) => {
           this.pokemons = pokemon;
           this.sortPokemon();
+          this.filteredPokemons = this.pokemons;
         });
     });
   }

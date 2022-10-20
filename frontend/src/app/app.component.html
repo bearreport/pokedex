@@ -2,5 +2,13 @@
   <button mat-button *ngIf="!auth.isAuthenticated$">
     <a href="/login"> Login</a>
   </button>
+  <button mat-button *ngIf="auth.isAuthenticated$">
+    <a href="/logout"> Logout</a>
+  </button>
+  <div>is authenticated: {{ auth.isAuthenticated$ | async }}</div>
+  <ul *ngIf="auth.user$ | async as user">
+    <li>user: {{ user.name }}</li>
+    <li>email: {{ user.email }}</li>
+  </ul>
 </mat-toolbar>
 <router-outlet></router-outlet>

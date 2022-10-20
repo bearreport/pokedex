@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { RouterModule, Routes } from '@angular/router';
+import { FormsModule } from '@angular/forms';
 
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
@@ -16,13 +17,22 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { LoginComponent } from './login/login.component';
 import { SpinnerComponent } from './spinner/spinner.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { LogoutComponent } from './logout/logout.component';
 
 @NgModule({
-  declarations: [AppComponent, PokeDetailComponent, DashboardComponent, LoginComponent, SpinnerComponent],
+  declarations: [
+    AppComponent,
+    PokeDetailComponent,
+    DashboardComponent,
+    LoginComponent,
+    SpinnerComponent,
+    LogoutComponent,
+  ],
   imports: [
     BrowserModule,
     RouterModule,
     AppRoutingModule,
+    FormsModule,
     HttpClientModule,
     MatToolbarModule,
     MatButtonModule,
