@@ -1,3 +1,4 @@
+pipenv shell to start virtual environment
 make bootstrap.sh executable (chmod +x bootstrap.sh)
 ./bootstrap.sh on command line to get the server running
 
@@ -15,3 +16,5 @@ use docker to create a db
 
 create env and download dependencies for pokescraper.py
 run pokescraper (this populates the db with the default pokemon)
+
+sudo docker start pokedex to start docker db

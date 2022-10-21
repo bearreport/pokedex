@@ -1,8 +1,8 @@
 <mat-toolbar color="primary" class="mat-elevation-z10">
-  <button mat-button *ngIf="!auth.isAuthenticated$">
+  <button mat-button>
     <a href="/login"> Login</a>
   </button>
-  <button mat-button *ngIf="auth.isAuthenticated$">
+  <button mat-button>
     <a href="/logout"> Logout</a>
   </button>
   <div>is authenticated: {{ auth.isAuthenticated$ | async }}</div>

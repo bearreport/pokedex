@@ -9,9 +9,11 @@ import { catchError, debounce, debounceTime } from 'rxjs/operators';
 export class PokemonApiService {
   constructor(private http: HttpClient) {}
 
+  private API = 'api';
+
   //get all pokemon
   getPokemon(): Observable<Pokemon[]> {
-    return this.http.get<Pokemon[]>(`${API_URL}/pokemons`).pipe(
+    return this.http.get<Pokemon[]>(`${API_URL}` + this.API + `/pokemons`).pipe(
       catchError((err) => {
         throw 'error!';
       })
@@ -19,18 +21,22 @@ export class PokemonApiService {
   }
 
   getSpecificPokemon(id: string): Observable<Pokemon> {
-    return this.http.get<Pokemon>(`${API_URL}/pokemons/${id}`).pipe(
-      catchError((err) => {
-        throw 'error!';
-      })
-    );
+    return this.http
+      .get<Pokemon>(`${API_URL}` + this.API + `/pokemons/${id}`)
+      .pipe(
+        catchError((err) => {
+          throw 'error!';
+        })
+      );
   }
 
   updatePokemon(id: string): Observable<Pokemon> {
-    return this.http.post<Pokemon>(`${API_URL}/pokemons/${id}`, {}).pipe(
-      catchError((err) => {
-        throw 'error!';
-      })
-    );
+    return this.http
+      .post<Pokemon>(`${API_URL}` + this.API + `/pokemons/${id}`, {})
+      .pipe(
+        catchError((err) => {
+          throw 'error!';
+        })
+      );
   }
 }

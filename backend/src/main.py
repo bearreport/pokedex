@@ -27,6 +27,22 @@ def get_pokemons():
 	session.close()
 	return jsonify(pokemons)
 
+@app.route('/pokemonNames', methods=['GET'])
+def get_pokemon_names():
+	session = Session()
+	pokemon_objects = session.query(Pokemon).order_by(Pokemon.id).all()
+
+	pokemon_schema = PokemonSchema(many=True)
+	pokemons = pokemon_schema.dump(pokemon_objects)
+
+	pokeList = []
+
+	for pokemon in pokemons:
+		pokeList.append((pokemon['name'], pokemon['id']))
+
+	session.close()
+	return jsonify(pokeList)	
+
 @app.route('/pokemons/<id>', methods=['GET'])
 def get_pokemon(id):
 	session = Session()

@@ -9,6 +9,7 @@ import { catchError } from 'rxjs/operators';
 export class PokepicturesApiService {
   constructor(private http: HttpClient) {}
 
+  public STORAGE = 'storage';
   //get all pokepictures
   getPokepictures(): Observable<Pokepicture[]> {
     return this.http.get<Pokepicture[]>(`${API_URL}/pokepictures`).pipe(
@@ -16,5 +17,15 @@ export class PokepicturesApiService {
         throw 'error!';
       })
     );
+  }
+
+  uploadPokepicture(picture: any): Observable<any> {
+    return this.http
+      .post<any>(`${API_URL}` + this.STORAGE + `/uploadFile`, picture)
+      .pipe(
+        catchError((err) => {
+          throw 'error!';
+        })
+      );
   }
 }

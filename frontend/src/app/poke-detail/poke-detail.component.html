@@ -7,9 +7,11 @@
   {{ specificPokemon.tattooed }}
 </p>
 
-<div *ngIf="auth.isAuthenticated$">
+<div *ngIf="auth.isAuthenticated$ | async">
   Have you tattooed this?
   <button (click)="updatePokemon()">Yes I Have tattoed it!</button>
 
-  <div *ngIf="specificPokemon.tattooed">sweet you've tattooed this</div>
+  <div *ngIf="specificPokemon.tattooed">
+    <app-image-upload></app-image-upload>
+  </div>
 </div>

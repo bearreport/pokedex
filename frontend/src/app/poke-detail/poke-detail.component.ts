@@ -2,9 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { PokemonApiService } from '../pokemon/pokemon-api.service';
 import { ActivatedRoute } from '@angular/router';
 import { AuthService } from '@auth0/auth0-angular';
-import { MatPseudoCheckbox } from '@angular/material/core';
-import { PokepicturesApiService } from '../pokepictures/pokepictures-api.service';
-import { SpinnerComponent } from '../spinner/spinner.component';
 import { Pokemon } from '../pokemon/pokemon.model';
 import { HttpClient } from '@angular/common/http';
 
