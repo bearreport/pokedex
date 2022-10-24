@@ -7,17 +7,24 @@
   position: relative;
   text-align: center;
   color: blueviolet;
+  &:hover {
+    .off-centered {
+      display: block;
+    }
+  }
 }
 
 .centered {
   position: absolute;
-  top: 50%;
+  top: 100%;
   left: 50%;
   transform: translate(-50%, -50%);
 }
 
 .off-centered {
   position: absolute;
+  display: none;
+  font-size: 32px;
   top: 40%;
   left: 40%;
   transform: translate(-50%, -50%);

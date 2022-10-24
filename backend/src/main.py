@@ -14,7 +14,6 @@ Base.metadata.create_all(engine)
 
 session = Session()
 
-pokemons = session.query(Pokemon).all()
 
 @app.route('/pokemons', methods=['GET'])
 def get_pokemons():

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { PokepicturesApiService } from '../pokepictures/pokepictures-api.service';
 
 @Component({
@@ -7,14 +8,28 @@ import { PokepicturesApiService } from '../pokepictures/pokepictures-api.service
   styleUrls: ['./image-upload.component.scss'],
 })
 export class ImageUploadComponent implements OnInit {
-  constructor(private PokePicturesApi: PokepicturesApiService) {}
+  constructor(
+    private PokePicturesApi: PokepicturesApiService,
+    private route: ActivatedRoute
+  ) {}
 
   ngOnInit(): void {}
 
   public processFile(imageInput: any) {
     const file: File = imageInput.files[0];
-    this.PokePicturesApi.uploadPokepicture(file).subscribe((data) => {
-      console.log(data);
-    });
+    let url = '';
+    this.PokePicturesApi.uploadPokepictureToS3(file).subscribe(
+      (response: any) => {
+        url = response;
+        console.log(url);
+      }
+    );
+    console.log('made it here');
+    this.PokePicturesApi.updateDbWithPokepicture(
+      url,
+      this.route.snapshot.params['id']
+    );
+
+    console.log('made it here 2');
   }
 }

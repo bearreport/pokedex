@@ -7,17 +7,17 @@ class Pokepictures(Entity, Base):
 	__tablename__ = 'pokepictures'
 
 	pokeid = Column(Integer, ForeignKey('pokemon.id'))
-	imageUrl = Column(String)
+	image_url = Column(String)
 
 	def __init__(self, name, description, created_by):
 		Entity.__init__(self, created_by)
 		self.pokeid = pokeid
-		self.imageUrl = imageUrl
+		self.image_url = image_url
 
 class PokepicturesSchema(Schema):
 	id = fields.Number()
 	pokeid = fields.Number()
-	imageUrl = fields.Str()
+	image_url = fields.Str()
 	created_at = fields.DateTime()
 	updated_at = fields.DateTime()
 	last_updated_by = fields.Str()
